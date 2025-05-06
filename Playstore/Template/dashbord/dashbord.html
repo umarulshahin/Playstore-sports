@@ -1,0 +1,756 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="{% static 'img/fav.png' %}">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>PlayStore</title>
+	<!--
+		CSS
+		============================================= -->
+	<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/ion.rangeSlider.skinFlat.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'path/to/jquery.magnify.css' %}">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
+</head>
+
+<!-- <style>
+    
+		#bannerCarousel {
+	 position: relative;
+ }
+ 
+ #bannerCarousel img {
+	 width: 100%;
+	 height: auto;
+ }
+ 
+ .carousel-inner a{
+	 display: flex;
+	 align-items: center;
+ }
+ 
+ .carousel-item {
+	 position: relative;
+	 text-align: center;
+ }
+ 
+ .carousel-caption {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -60%);
+	 color: white;
+	 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	 width: 100%; 
+	 box-sizing: border-box; 
+ }
+ 
+ .carousel-caption h5 {
+	 position: absolute;
+	 top: -30%;
+	 left: 80%;
+	 transform: translate(-50%, -50%);
+	 font-size: 2em;
+	 margin-bottom: 10px;
+	 color: white;
+	 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	 width: 100%;
+	 box-sizing: border-box;
+ }
+ 
+ .carousel-caption p {
+	 font-size: 1.4em;
+	 max-width: 100%; 
+	 margin: 0 auto; 
+	  position: absolute;
+	  top: 20%;
+	 left: 40%;
+ }
+ 
+ .carousel-item img {
+	 width: 100%; 
+	 height: auto;
+ }
+ 
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@300;400&family=Russo+One&display=swap');
+
+
+.logo-text {
+		 font-family: 'Lilita One', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Russo One', sans-serif;
+		 font-size: 38px;
+		 font-weight: 400;
+		 color: orange;
+		 /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); */
+	 } -->
+ 
+	 <!-- </style> -->
+
+	 <style>
+		.img-fluidd {
+			max-width: 100%;
+			height: 250px;
+		}
+		.img-fluidde {
+			max-width: 100%;
+			height: 530px;
+		}
+		.suggestions-container {
+			margin-right: 10px; /* Adjust this value as needed for spacing */
+		}
+		.invisible-button:hover {
+			/* Add your hover effect styles here */
+			/* For example, change background color */
+			background-color: #0ee123;
+		}
+        .banner-content{
+			margin-top: 350px;
+			margin-left: 100px;
+		}
+		.banner-main-img{
+			margin-left: 200px;		}
+		.category-area{
+			margin:0 150px 0 150px;
+		}
+		.features-area{
+			margin:0 150px 0 150px;
+
+		}
+		.container-fluid {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		  }
+		body{
+			overflow-x: hidden;
+		}
+		  
+		
+	 </style>
+	
+
+   
+    <body>
+		<header class="header_area sticky-header" >
+			<div class="main_menu" >
+				<nav class="navbar navbar-expand-lg navbar-light main_box">
+					<div class="container-fluid" style="margin:0 40px 0 40px;">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<a class="navbar-brand logo_h" href="{% url 'Dashbord' %}">
+							<img src="{% static 'img/playstore logo.png' %}" alt="" style="width: 150px; height: 60px;">
+						</a>
+						
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+						 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+							<ul class="nav navbar-nav menu_nav ml-auto">
+								<li class="nav-item active"><a class="nav-link" href="{% url 'Dashbord' %}">Home</a></li>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+									 aria-expanded="false">Shop</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="{% url 'all_product' %}">All product</a></li>
+										<!-- <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li> -->
+
+										<!-- <li class="nav-item"><a class="nav-link" href="{% url 'checkout' %}">Product Checkout</a></li> -->
+										
+										<!-- <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+										<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li> -->
+									</ul>
+								</li>
+								<!-- <li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+									 aria-expanded="false">Blog</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+									</ul>
+								</li> -->
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+									 aria-expanded="false">My Profile</a>
+
+									 {% if user.is_authenticated %}
+
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="{% url 'user_profile' %}">My Account</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'user_wishlist' %}">My Wishlist</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'user_cart' %}">My Cart</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'my_order' %}">My Order</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'my_wallet' %}">My Wallet</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+									</ul>
+
+									{% else %}
+									<script>
+									</script>
+									<ul>
+										<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+										<li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+									 </ul>
+								     </li>
+									{% endif %}
+								     
+								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="nav-item"><a href="{% url 'user_cart' %}" class="cart"><span class="ti-bag"></span></a></li>
+								<li class="nav-item">
+									<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<div class="search_input" id="search_input_box">
+				<div class="container">
+					<form class="d-flex justify-content-between align-items-center" method="GET" action="/all_product/">
+						<div >
+						<input type="text" class="form-control" name="search" id="search-input" placeholder="Search Here">
+					</div>
+					<div class="suggestions-container m-0">
+						<!-- Your suggestion content here -->
+						<h5><button type="submit" id="suggestions" class="invisible-button " style="color:white; border: none; background: none; outline: none;"></button></h5>
+					</div>
+						<button type="submit" class="btn"></button>
+						<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+						
+					</form>
+					
+				
+				</div>
+			</div>
+			
+				
+			
+		</header>
+		<!-- End Header Area -->
+
+		{% block content%}
+
+	<!-- Start Banner Area -->
+	<section class="banner-area">
+		<div class="container-fluid">
+			<div class="row fullscreen align-items-center justify-content-start" >
+				<div class="col-lg-12">
+					<div class="">
+						
+						<!-- single-slide -->
+						<div class="row single">
+							<div class="col-lg-5" > 
+								<div class="banner-content" >
+									<h1>Nike New <br>Collection!</h1>
+									<p>Nike is synonymous with excellence in design, comfort, and performance.
+										Our handpicked selection includes a wide range of options,
+										from the iconic Nike Air Max series to the cutting-edge React technology.</p>
+										
+									
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="banner-main-img" >
+									<img class="img-fluid" src="{% static 'img/banner/main banner img.png' %}" alt="banner img">
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<!-- start features Area -->
+	<section class="features-area section_gap">
+		<div class="container-fluid">
+			<div class="row features-inner">
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6 ">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="{% static 'img/features/f-icon1.png' %}" alt="">
+						</div>
+						<h6>Free Delivery</h6>
+						<p>Free Shipping on all order</p>
+					</div>
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="{% static 'img/features/f-icon2.png' %}" alt="">
+						</div>
+						<h6>Return Policy</h6>
+						<p>Free Shipping on all order</p>
+					</div>
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="{% static 'img/features/f-icon3.png' %}" alt="">
+						</div>
+						<h6>24/7 Support</h6>
+						<p>Free Shipping on all order</p>
+					</div>
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-features">
+						<div class="f-icon">
+							<img src="{% static 'img/features/f-icon4.png' %}" alt="">
+						</div>
+						<h6>Secure Payment</h6>
+						<p>Free Shipping on all order</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end features Area -->
+
+	<!-- Start category Area -->
+	<section class="category-area">
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-12 ">
+					<div class="row">
+						<div class="col-lg-8 col-md-8">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluidd w-100" src="{% static 'img/post 1.webp' %}" alt="">
+								<a href="{% static 'img/post 1.webp' %}" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Product for Couple</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluidd w-100" src="{% static 'img/post 8.webp' %}" alt="">
+								<a href="{% static 'img/post 8.webp' %}" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Sneaker for Sports</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluidd w-100" src="{% static 'img/post 5.webp' %}" alt="">
+								<a href="{% static 'img/post 5.webp' %}" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Step into Style</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-8">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluidd w-100" src="{% static 'img/post 6.webp' %}" alt="">
+								<a href="{% static 'img/post 6.webp' %}" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Sneaker for Sports</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-deal">
+						<div class="overlay"></div>
+						<img class="img-fluidde w-100" src="{% static 'img/offer.png' %}" alt="">
+						<a href="{% static 'img/offer.png' %}" class="img-pop-up" target="_blank">
+							<div class="deal-details">
+								<h6 class="deal-title">Black Friday</h6>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End category Area -->
+
+	<!-- Start Banner Area -->
+	<section class="features-area section_gap">
+        
+               
+                <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            
+       
+    </section>
+
+	<!-- start product Area -->
+
+		
+		<!-- single product slide -->
+		<div class="single-product-slider justify-content-center ">
+			<div class="container-fluid">
+				<div class="row justify-content-center ">
+					<div class="col-lg-6 text-center">
+						<div class="section-title">
+							<h1>Latest Products</h1>
+							<p>Made from high-quality materials, these shoes offer durability and breathability,
+								ensuring long-lasting comfort during every workout or game.</p>
+						</div>
+					</div>
+				</div>
+		
+				<div class="row justify-content-center ">
+					{% for pro in pro %}
+					    {% if pro.is_deleted == True %}
+						<div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+							<div class="single-product">
+								<img class="img-fluid" src="{{ pro.image.url }}"
+									 style="width: 200px; height: 200px; object-fit: cover;">
+								<div class="product-details">
+									<h4>{{ pro.name }}</h4>
+										<div class="price">
+									{% if pro.offer_price >= 1 %}
+									    
+											<h5><strong class="product-price my-1">
+												 <del class="m-1">₹ {{pro.price}}</del>
+												 <h6>({{pro.discount}}% off)</h6>
+											</strong></h5>
+											<h4><strong>₹ {{pro.offer_price}}</strong></h4>
+											
+											
+										{% else %} 
+											<h4 class="product-price"><strong>₹ {{pro.price}}</strong></h4>
+									{% endif %}
+										<!-- <h6>Price: ₹ {{ pro.offer_price }} </h6> -->
+									</div>
+									<div class="prd-bottom">
+										<a href="#" class="social-info add-to-wishlist-btn" data-product-id="{{ pro.id }}">
+											{% csrf_token %}
+											<span class="lnr lnr-heart"></span>
+											<p class="hover-text">Wishlist</p>
+										</a>
+										<a href="{% url 'view_product' pro.id %}" class="social-info">
+											<span class="lnr lnr-move"></span>
+											<p class="hover-text">View More</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endif%}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- single product slide -->
+		<div class="single-product-slider">
+			<div class="container-fluid ">
+				<div class="row justify-content-center ">
+					<div class="col-lg-6 col-sm-6 text-center">
+						<div class="section-title">
+							<h1>Popular Products</h1>
+							<p> Made from high-quality materials, these shoes offer durability and breathability, 
+							ensuring long-lasting comfort during every workout or game.</p>
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="row justify-content-center ">
+					{% for sub_category in sub %}
+						{% for product in sub_category.product_set.all %}
+						    {% if product.is_deleted == True%}
+							<div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+								<div class="single-product">
+									<img class="img-fluid" src="{{ product.image.url }}" alt="Image"
+									style="width: 200px; height: 200px; object-fit: cover;">
+									<div class="product-details">
+										<h4>{{ product.name }}</h4>
+										<div class="price">
+											{% if product.offer_price >= 1 %}
+									    
+											<h5><strong class="product-price my-1">
+												 <del class="m-1">₹ {{product.price}}</del>
+												 <h6>({{product.discount}}% off)</h6>
+											</strong></h5>
+											<h4><strong>₹ {{product.offer_price}}</strong></h4>
+											
+											
+										{% else %} 
+											<h4 class="product-price"><strong>₹ {{product.price}}</strong></h4>
+									{% endif %}
+										</div>
+										<div class="prd-bottom">
+											<a href="#" class="social-info add-to-wishlist-btn" data-product-id="{{ product.id }}">
+												{% csrf_token %}
+												<span class="lnr lnr-heart"></span>
+												<p class="hover-text">Wishlist</p>
+											</a>
+											<a href="{% url 'view_product' product.id %}" class="social-info">
+												<span class="lnr lnr-move"></span>
+												<p class="hover-text">View More</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+				
+	
+	<!-- end product Area -->
+
+	
+	<!-- End exclusive deal Area -->
+
+	<!-- Start brand Area -->
+	<section class="brand-area section_gap">
+		<div class="container-fluid">
+			<div class="row">
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="{% static 'img/brand/1.png' %}" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="{% static 'img/brand/2.png' %}" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="{% static 'img/brand/3.png' %}" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="{% static 'img/brand/4.png' %}" alt="">
+				</a>
+				<a class="col single-img" href="#">
+					<img class="img-fluid d-block mx-auto" src="{% static 'img/brand/5.png' %}" alt="">
+				</a>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+	{% endblock %}
+	<!-- start footer Area -->
+	<footer class="footer-area section_gap">
+		<div class="container">
+			<div class="row text-center align-items-center">
+				<div class="col-lg-3  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>About Us</h6>
+						<p>
+							We source footwear from reputable manufacturers known for their commitment to quality and attention to detail.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Newsletter</h6>
+						<p>Stay update with our latest</p>
+						<div class="" id="mc_embed_signup">
+	
+							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							 method="get" class="form-inline">
+	
+								<div class="d-flex flex-row">
+	
+									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+									 required="" type="email">
+	
+	
+									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+									<div style="position: absolute; left: -5000px;">
+										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+									</div>
+	
+								   
+								</div>
+								<div class="info"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Contact Us</h6>
+						<p>Email: Playstoresport@gmail..com</p>
+						<p>Phone(SMS):9876543210 </p>
+						<p>Address: 123 Main Street, Banglore</p>
+					</div>
+				</div>
+			   
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Follow Us</h6>
+						<p>Let us be social</p>
+						<div class="footer-social d-flex align-items-center">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-envelope"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;2023 All rights reserved this Website for 
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	</p>
+			</div>
+		</div>
+	</footer>
+	
+	<!-- End footer Area -->
+	
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	 <script> 
+	  $(document).ready(function() {
+		$('.add-to-wishlist-btn').click(function(e) {
+			e.preventDefault(); // Prevent default link behavior
+			
+			var productId = $(this).data('product-id');
+			var token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+			var data = {
+				'product_id': productId,
+				"csrfmiddlewaretoken": token,
+			};
+			$.ajax({
+				type: 'POST',
+				url: '{% url "add_wishlist" %}', // URL to your Django view
+				data: data,
+				success: function(response) {
+					if (response.success === 'added') {
+						toastr.success('Product added to wishlist successfully');
+                        setTimeout(function() {
+                        }, 2000);
+					} else if (response.success === 'already') {
+						toastr.warning('Product already in Wishlist');
+                        setTimeout(function() {
+                        }, 2000);
+					} else if (response.success === 'cart already') {
+
+						toastr.warning('Product already in Cart');
+                        setTimeout(function() {
+                        }, 2000);
+					}else {
+
+						toastr.warning('Failed to add product to wishlist');
+                        setTimeout(function() {
+                        }, 2000);
+					}
+				},
+				error: function() {
+					alert('An error occurred');
+				}
+			});
+		});
+	});
+
+</script>
+	
+<script>
+	$(document).ready(function(){
+		$('#search-input').keyup(function(){
+			var prefix = $(this).val();
+			$.ajax({
+				type: 'GET',
+				url: '/suggestions/',
+				data: {'prefix': prefix},
+				success: function(data){
+					var suggestions = $('#suggestions');
+					suggestions.empty();
+					var suggestionList = $('<ul></ul>');
+					$.each(data.suggestions, function(index, value){
+						var suggestionItem = $('<li>' + value + '</li>');
+						suggestionItem.click(function() {
+							$('#search-input').val($(this).text());
+							suggestions.empty();
+						});
+						suggestionList.append(suggestionItem);
+					});
+					suggestions.append(suggestionList);
+				}
+			});
+		});
+	});
+	
+</script>
+
+	
+	
+	<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+	<script src="{% static 'js/jquery.sticky.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/countdown.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="{% static 'js/gmaps.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	
+
+</body>
+
+</html>

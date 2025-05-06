@@ -1,0 +1,476 @@
+{% extends 'dashbord/dashbord.html' %}
+
+{%block content%}
+
+<head>
+    <!-- Include Alertify library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+    <!-- Include Alertify CSS (for styling) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" />
+
+    <!-- Include Toastr library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+</head>
+
+
+
+
+
+<style>
+    #size {
+        border: 2px solid red !important;
+    }
+
+    .size-selector {
+        display: flex;
+        gap: 10px;
+    }
+
+    .size-circle {
+        background-color: orange;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border: 2px solid orange;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .size-circle:hover {
+        background-color: rgba(191, 184, 184, 0.522);
+        color: orange;
+    }
+
+    .hidden-radio {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .hidden-radio:checked + .size-circle {
+        background-color: white;
+        color: orange;
+        border-color: orange;
+    }
+
+    .line {
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        margin: 20px 0;
+    }
+
+    .text-box {
+        margin-left: 30vw;
+        margin-top: 32vh;
+    }
+
+    .btn:link,
+    .btn:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        width: 100px;
+        padding: 10px 20px;
+        display: inline-block; 
+        border-radius: 50px;
+        transition: all .2s;
+        font-size: 14px;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-white {
+        background-color: #fff;
+        color: #777;
+    }
+
+    .btn::after {
+
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+        
+    }
+
+    .btn-white::after {
+        background-color: #fff;
+    }
+
+    .btn:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+    }
+
+    .btn-animated {
+        animation: moveInBottom 5s ease-out;
+        animation-fill-mode: backwards;
+    }
+
+    @keyframes moveInBottom {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+
+    .icon-size {
+
+        width: 20px; /* Set the desired width */
+        height: 20px; /* Set the desired height */
+    }
+</style>
+
+
+    
+    <body>
+    
+        <!-- Start Header Area -->
+       
+            <!-- End Header Area -->
+            <!-- Start Banner Section -->
+            <section class="banner-area organic-breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                        <div class="col-first">
+                            <h1>Shopping</h1>
+                            <nav class="d-flex align-items-center">
+                                <a href="#">View Product<span class="lnr lnr-arrow-right"></span></a>
+                                <a href="{% url 'Dashbord' %}">Home</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="product-details mt-5">
+                <div class="container-fluid mt-5">
+                    <div class="row product_data">
+                        <!-- Additional Images Section (Left Side) -->
+                        <div class="col-lg-2 order-lg-1 order-2 mt-5">
+                            <div class="additional-images d-flex flex-column align-items-start ml-5">
+                                {% for image in pro.product_image_set.all %}
+
+                                <div class="additional-image mb-2" data-image="{{ image.image_url.url }}">
+                                    <img src="{{ image.image_url.url }}" alt="Additional Product Image"  class="img-thumbnail"
+                                         style="width: 100px; height: 100px; object-fit: cover;">
+                                </div>
+                                
+                                {% endfor %}
+                            </div>
+                        </div>
+        
+                        <!-- Product Main Image Section (Right Side) -->
+<!--                         
+                        <div class="col-lg-6 order-lg-2 order-1 text-center">
+                            <div class="product-image">
+                                    <img id="mainImage" src="{{ pro.image.url }}" alt="Product Image"
+                                        class="img-fluid" style="width: 700px; height: 500px; object-fit: cover;">
+                                
+                            </div>
+                          
+                        </div> -->
+                        <div class="col-lg-6 order-lg-2 mt-5 order-1 text-center">
+                            <div class="product-image">
+                                <img id="mainImage" src="{{ pro.image.url }}" alt="Product Image" class="img-fluid" style="width: 80%; height: 550px; object-fit: cover;">
+                            </div>
+                        </div>
+                        
+                        
+        
+                        <!-- Product Details Section (Right Side) -->
+                        <div class="col-lg-4 order-lg-3 order-3">
+                            <div class="product-info ml-5 mt-5">
+                                <!-- Product Information (Name, Price, Description, etc.) -->
+                                <h1><strong>{{pro.name}}</strong></h1>
+                                <div class="price mt-3">
+                                {% if pro.offer_price >= 1 %}
+									    
+                                <h3><strong class="product-price my-1">
+                                     <del class="m-1">₹ {{pro.price}}</del>
+                                     {{pro.discount}}% off
+                                </strong></h3>
+                                <h2><strong>₹ {{pro.offer_price}}</strong> </h2>
+                            </div>
+                                
+                            {% else %} 
+                                <h3 class="product-price"><strong>₹ {{pro.price}}</strong></h3>
+                        {% endif %}
+                                
+                                <p>Average Ratings: <span class="fa fa-star"
+                                        style="color: green; border: 1px solid green;"></span></p>
+        
+                                <!-- Size Selector -->
+
+                            
+                                <div class="form-group">
+                                    <label for="size"><h4> Size </h4></label>
+                                    <br>
+                                    <form action="" method="post" id="addToCartForm">
+                                        {% csrf_token %}
+                                        <div class="size-selector"> 
+                                            <!-- Add your size radio buttons here -->
+                                        
+                                            {% if stock %}
+                                            {% for size in pro.product_size_set.all %}
+                                              {% if size.stock >= 1 %}
+                                               
+                                                  <input type="radio" id="size-{{ size.size }}" name="size" value="{{ size.size }}" class="hidden-radio" required>
+                                                  <label for="size-{{ size.size }}" class="size-circle">{{ size.size }}</label>
+                                                 
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% else %}
+                                            <h5 class=" out_of_stock mt-3" style="color:red">Out OF Stock</h5>
+                                            {% endif %}
+                                       
+                                          
+                                          <input type="hidden" name="product_id" value="{{ pro.id }}" class="prod_id">
+                                          <input type="hidden" value="1" class="prod_qty">
+                                          
+                                        </div>
+                                
+                                        <!-- Interactive Icons (Add to Cart, Add to Wishlist) -->
+                                        <div class="interactive-icons mt-5">
+                                            <div class="btn-container d-flex">
+                                                {% if stock %}
+                                                <a href="#" id="AddToCart" class="btn btn-dark flex-grow-1">
+                                                    <i class="fa fa-cart-plus icon-size"></i> Add to Cart
+                                                </a>
+                                                {% endif%}
+                                                <a href="#" class="btn btn-primary ml-2 flex-grow-1 add-wishlist" data-product-id="{{ pro.id }}">
+                                                    {% csrf_token %}
+                                                    <i class="fa fa-heart icon-size"></i> Add Wishlist
+                                                </a>
+                                             
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                    
+                                </div>
+                                
+                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </section>
+        
+            <!-- Related Products Section -->
+            <div class="container mt-5">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-12 text-center mt-5">
+                        <h2>Related Products</h2>
+                    </div>
+        
+                    <!-- Loop through related products -->
+                    {% for relate in relate %}
+                        {% if relate.is_deleted == True %}
+                            <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                                <a href="{% url 'view_product' relate.id %}">
+                                    <div class="card" style="border: none;">
+                                        <img src="{{ relate.image.url }}" class="card-img-top" alt="{{ relate.name }}"
+                                            style="width: 175px; height: 175px; object-fit: cover;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ relate.name }}</h5>
+                                            <div class="price">
+                                                {% if relate.offer_price >= 1 %}
+                                                
+                                                <h5><strong class="product-price my-1">
+                                                     <del class="m-1">₹ {{relate.price}}</del>
+                                                     {{relate.discount}}% off
+                                                </strong></h5>
+                                                <h4><strong>₹ {{relate.offer_price}}</strong></h4>
+                                                
+                                                
+                                            {% else %} 
+                                                <h4 class="product-price"><strong>₹ {{relate.price}}</strong></h4>
+                                        {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Out of Stock Modal -->
+            <div class="modal fade" id="outOfStockModal" tabindex="-1" role="dialog" aria-labelledby="outOfStockModalLabel"
+                aria-hidden="true">
+                <!-- Modal content goes here -->
+            </div>
+        
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  
+            <script> 
+                $(document).ready(function() {
+                  $('.add-wishlist').click(function(e) {
+                      e.preventDefault(); // Prevent default link behavior
+                      
+                      var productId = $(this).data('product-id');
+                      var token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+          
+                      var data = {
+                          'product_id': productId,
+                          "csrfmiddlewaretoken": token,
+                      };
+                      $.ajax({
+                        type: 'POST',
+                        url: '{% url "add_wishlist" %}', // URL to your Django view
+                        data: data,
+                        success: function(response) {
+                            if (response.success === 'added') {
+                                toastr.success('Product added to wishlist successfully');
+                                setTimeout(function() {
+                                }, 2000);
+                            } else if (response.success === 'already') {
+                                toastr.warning('Product already in Wishlist');
+                                setTimeout(function() {
+                                }, 2000);
+                            } else if (response.success === 'cart already') {
+        
+                                toastr.warning('Product already in Cart');
+                                setTimeout(function() {
+                                }, 2000);
+                            }else {
+        
+                                toastr.warning('Failed to add product to wishlist');
+                                setTimeout(function() {
+                                }, 2000);
+                            }
+                        },
+                        error: function() {
+                            alert('An error occurred');
+                        }
+                      });
+                  });
+              });
+          
+          </script>
+              
+
+<script>
+    $(document).ready(function() {
+        $('#AddToCart').click(function(e) {
+            e.preventDefault();
+
+            var product_id = $(this).closest('form').find('.prod_id').val();
+            var product_qty = $(this).closest('form').find('.prod_qty').val();
+            var product_size = $(this).closest('form').find('input[name="size"]:checked').val();
+            var token = $('#addToCartForm input[name=csrfmiddlewaretoken]').val();
+
+       
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-cart",
+                data: {
+                    'product_id': product_id,
+                    'product_qty': product_qty,
+                    'product_size': product_size,
+                    csrfmiddlewaretoken: token
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status === "Product added successfully") {
+                        toastr.success(response.status);
+                    } 
+                    else {
+
+                        toastr.warning(response.status);
+                       
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alertify.error("An error occurred. Please try again.");
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script>
+    // Check for the selected size before fetching data
+    document.getElementById('AddToCart').addEventListener('click', function () {
+        var selectedSize = document.querySelector('input[name="size"]:checked');
+        
+        if (!selectedSize) {
+            // Display a Toastr notification
+            toastr.warning('Please select a size before adding to cart.');
+            return; // Stop execution if size is not selected
+        }
+
+        var product_id = document.querySelector('.prod_id').value;
+        var product_qty = document.querySelector('.prod_qty').value;
+        var product_size = selectedSize.value;
+        var token = document.querySelector('#addToCartForm input[name=csrfmiddlewaretoken]').value;
+
+        // Now you can proceed with fetching data using product_id, product_qty, product_size, and token
+        // ...
+    });
+</script>
+
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var additionalImages = document.querySelectorAll('.additional-image');
+                    var mainImage = document.getElementById('mainImage');
+            
+                    // Set the main image source to the first additional image by default
+                    if (additionalImages.length > 0) {
+                        mainImage.src = additionalImages[0].getAttribute('data-image');
+                    }
+            
+                    additionalImages.forEach(function (image) {
+                        image.addEventListener('click', function () {
+                            var newImageSrc = this.getAttribute('data-image');
+                            mainImage.src = newImageSrc;
+                        });
+                    });
+                });
+            </script>
+            
+          
+                
+
+{% endblock %}

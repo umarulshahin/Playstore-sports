@@ -1,0 +1,161 @@
+{% extends 'dashbord/dashbord.html' %}
+
+{% block content %}
+
+    <!-- Start Header Area -->
+        <!-- End Header Area -->
+        <!-- Start Banner Section -->
+        <section class="banner-area organic-breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                    <div class="col-first">
+                        <h1>Shopping</h1>
+                        <nav class="d-flex align-items-center">
+                            <a href="#">Home<span class="lnr lnr-arrow-right"></span></a>
+                            <a href="#">Checkout</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        
+
+	<!--================Order Details Area =================-->
+	<section class="order_details section_gap">
+		<div class="container">
+			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+			<div class="row order_d_inner">
+				<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Order Info</h4>
+						<ul class="list">
+							<li><a href="#"><span>Order Id</span> {{order.order_id}}</a></li>
+							<li><a href="#"><span>Date</span> :{{order.created_date|date}}</a></li>
+							<li><a href="#"><span>Total</span> : {{order.total_amount}}</a></li>
+							<li><a href="#"><span>Payment Method</span> : {{order.payment_type }}</a></li>
+						</ul>
+					</div>
+				</div>
+			
+				<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Shipping Address</h4>
+						<ul class="list">
+							
+						
+                            <li><a href="#"><span>House Name </span> : {{house}}</a></li>
+							<li><a href="#"><span>Street</span> :  {{street}}</a></li>
+							<li><a href="#"><span>City</span> : {{city}} </a></li>
+							<li><a href="#"><span>Country</span> :  {{country}}</a></li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="order_details_table">
+				<h2>Invoice</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col"><h6>Product</h6></th>
+								<th scope="col"><h6>Price</h6></th>
+								<th scope="col"><h6>Offer Price</h6></th>
+								<th scope="col"><h6>Quantity</h6></th>
+								<th scope="col"><h6>Total</h6></th>
+							</tr>
+						</thead>
+						<tbody>
+
+                            {% for item in item %}
+                                <tr>
+                                    <td>
+                                        <p>{{item.product.name}}</p>
+                                    </td>
+									<td>
+										<p>  {{item.price}}</p>
+									 </td>
+									 <td>
+										<p>  {{item.offer_price}}</p>
+									 </td>
+                                    <td>
+                                       <p> x {{item.qty}}</p>
+                                    </td>
+                                    <td>
+                                        <p>₹ {{item.total_price}}</p>
+                                    </td>
+                                </tr>
+                          {% endfor %}
+
+
+							
+							
+							
+							<tr>
+								<td>
+									
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<!-- <p>{{order.total_amount}}</p> -->
+								</td>
+							</tr>
+							
+							<tr>
+							</td>
+							
+							<td>
+								<h5></h5>
+							</td>
+							<td>
+								<h5></h5>
+							</td>
+							<td>
+								<h5></h5>
+							{% if order.coupon_discount %}
+							<td>
+								<h4 style="color: rgb(81, 187, 81);">Coupon </h4>
+							</td>
+							
+							<td>
+								<h6 style="color: rgb(81, 187, 81);">₹ {{order.coupon_discount}}</h6>
+							</td>
+						</td>
+							{% endif %}
+							</tr>
+
+							<tr>
+
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<h5></h5>
+								
+								<td>
+									<h4>Subtotal</h4>
+								</td>
+								
+								<td>
+									<h6> ₹ {{order.total_amount}}</h6>
+								</td>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+    {% endblock %}
