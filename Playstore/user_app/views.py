@@ -14,7 +14,10 @@ from Admin_app.models import *
 from django.contrib.auth.hashers import make_password, check_password
 import string
 from django.core.mail import BadHeaderError, send_mail
-from django.conf import settings
+
+import environ
+
+env = environ.Env()
 
 
 
@@ -367,7 +370,6 @@ def Forget_OTP_check(request):
                 f_re_otp=request.session.get("F_re_otp")
                 otp=request.session.get("otp")
                 
-                print(f_re_otp,"...............Otp")
                 
                 if f_otp == str(otp) or  f_otp ==str(f_re_otp) :
                     
@@ -493,7 +495,7 @@ def otp(email):
     try:
         
         otp= random.randint(100000,999999)
-        print("Sending email...")
+        
         sender_email = 'akkushahin666@gmail.com'
         recipient_email = 'akkushahin666@gmail.com'
              # Example OTP, replace with your actual OTP
@@ -510,11 +512,11 @@ def otp(email):
         send_email=False
         
     try:    
-        load_dotenv()
-        account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-        auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-        my_number = os.getenv('MY_NUMBER')
-        print(otp,".............otp")
+        
+        account_sid = env('TWILIO_ACCOUNT_SID')
+        auth_token = env('TWILIO_AUTH_TOKEN')
+        my_number = env('MY_NUMBER')
+        
         client = Client(account_sid,auth_token)
         
         msg = client.messages.create(
@@ -585,7 +587,6 @@ def Forgot_Resend_Otp(request):
             messages.error(request,"OTP genaration failed")
             return render(request,'User_auth/Signup_otp.html') 
         
-        print(re_otp,"................426")
         request.session["F_re_otp"]=re_otp
         return redirect('forget_OTP_check') 
     except Exception as e: 

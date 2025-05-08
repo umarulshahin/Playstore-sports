@@ -22,7 +22,9 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET
 from datetime import datetime
+import environ
 
+env = environ.Env()
 
 
 # Create your views here.
@@ -1727,8 +1729,8 @@ def Pay_With_Upi(request):
                             messages.error(request,f"{i.product.name} out stock please choose any another product")
                             return redirect("user_cart")
             
-            client = razorpay.Client(auth=("rzp_test_CBJeWuVVebxglq", "NTEfgFjJ4z9dxx4H5fOL1nlm"))
-          
+            client = razorpay.Client(auth=(env("RAZORPAY_KEY_ID"),env('RAZORPAY_KEY_SECRET')))
+
             return JsonResponse({
                     'total_amount' : total ,'username' :user_id.username,'email' : user_id.email,'phone':user_id.ph_no,
                     })
@@ -2049,7 +2051,7 @@ def Wallet_upi(request):
     
         user_id=int(CustomUser.objects.get(email=request.user))
         user=CustomUser.objects.get(id=user_id)
-        client = razorpay.Client(auth=("Rrzp_test_NqH0AQ919F3Q3B", "90Ku7HA85h4ej9uv0AptcwpK"))
+        client = razorpay.Client(auth=(env("RAZORPAY_KEY_ID"),env('RAZORPAY_KEY_SECRET')))
         print("coming call")
             
         return JsonResponse({

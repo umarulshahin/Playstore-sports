@@ -172,8 +172,8 @@ LOGIN_REDIRECT_URL="http://127.0.0.1:8000/accounts/google/login/callback/"
 LOGOUT_REDIRECT_URL="/"
 
 
-RAZORPAY_KEY_ID = "rzp_test_CBJeWuVVebxglq"
-RAZORPAY_KEY_SECRET = "NTEfgFjJ4z9dxx4H5fOL1nlm"
+RAZORPAY_KEY_ID =env('RAZORPAY_KEY_ID')
+RAZORPAY_KEY_SECRET =env('RAZORPAY_KEY_SECRET')
 #For To Enable Popus in Django or else it will block the payment popup
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
@@ -185,5 +185,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'akkushahin666@gmail.com'  
-EMAIL_HOST_PASSWORD = 'lwuqpkonixghxuhp'  
+EMAIL_HOST_USER =env('EMAIL_HOST_USER')  
+EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD') 
