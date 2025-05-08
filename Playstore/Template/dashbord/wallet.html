@@ -113,6 +113,7 @@
     async function RazorpayWallet() {
 
         console.log("Inside function");
+        
         let amountToPay = document.getElementById('Amount').value;
         console.log(amountToPay);
 
@@ -133,15 +134,15 @@
             });
         } else {
             // Make AJAX request to retrieve UPI payment details
-         
+            const key = "{{key}}";
+
             $.ajax({
                 method: "GET",
                 url: "/wallet_upi/", // Corrected URL
                 success: function(response) {
-                    console.log(response);
-        
+                    
                     var options = {
-                        "key": "rzp_test_CBJeWuVVebxglq",
+                        "key": key,
                         "amount": amountToPay * 100,
                         "currency": "INR",
                         "name": "Playstore",

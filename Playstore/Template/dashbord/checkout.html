@@ -500,7 +500,6 @@
          
          async function proceedToOrder() {
            
-            console.log("wjeabfqdckuawjsdvcb");
             
             var selectedAddress = document.querySelector('input[name="address"]:checked');
             var selectedpayment = document.querySelector('input[name="paymentMethod"]:checked');
@@ -551,8 +550,6 @@
 
              
             else if(selectedpayment.value == 'upi'){
-
-               console.log("...........212121212")
                
                 const amount = document.getElementById('total').textContent.trim();
 
@@ -561,16 +558,12 @@
                     method: "GET",
                     url: "/pay_with_upi",
                     success: function (response) {
-                        console.log(response);
-                        console.log(response.username);
-                        console.log(response.email);
-                        console.log(response.phone);
-                     
-                  
+
+                        const key = "{{key}}";
 
                          var options = {
-                            "key": "rzp_test_CBJeWuVVebxglq", // Enter the Key ID generated from the Dashboard
-                            "amount": response.total_amount*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                            "key": key, // Enter the Key ID generated from the Dashboard
+                            "amount": response.total_amount*100, 
                             "currency": "INR",
                             "name": "Playstore",
                             "description": "Thank you for buying for us",

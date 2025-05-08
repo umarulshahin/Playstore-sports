@@ -888,7 +888,8 @@ def Checkout(request):
                     elif i.offer_valid_amount <= sub_total:
                         
                         valid.append(i)
-  
+                
+                key = env('RAZORPAY_KEY_ID')
                 context={
                     
                     'value' :value,
@@ -898,6 +899,7 @@ def Checkout(request):
                     'sub_total' : sub_total,
                     'coupon' : valid,
                     'coupon_amount' : cou,
+                    'key' : key
                 }
                 
                 
@@ -1673,9 +1675,7 @@ def Cancellation(request,id):
                     order.status= 'refunded'
                     order.status_date=date
                     order.save()
-                    
-                    
-                    
+         
                     
             return redirect('my_order')
         
@@ -2020,10 +2020,12 @@ def My_Wallet(request):
     try:
         wallet=CustomUser.objects.get(email=request.user)
         transaction=Wallet_Transactions.objects.filter(customuser=wallet.id)
-    
+        public_key = env('RAZORPAY_KEY_ID')
+
         context={
             'wallet' : wallet,
             'transaction' : transaction,
+             'key' : public_key
         }
         
         return render(request,'dashbord/wallet.html',context)
@@ -2032,10 +2034,11 @@ def My_Wallet(request):
 
         error=type(e).__name__
         typee,code=status_codee(error)
-            
+                    
         context={
             'type' :typee,
-            'code' : code
+            'code' : code,
+           
         }
         return render(request, 'dashbord/user_404.html',context)
 
